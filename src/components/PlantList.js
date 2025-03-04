@@ -1,20 +1,14 @@
-import React, {useEffect, useState } from "react";
+import React from "react";
 import PlantCard from "./PlantCard";
 
 
-function PlantList() {
-  const [plantsl, setPlantsl]=useState([]);
-  useEffect(()=>{
-    fetch("http://localhost:6001/plants")
-    .then((r)=>r.json())
-    .then((data)=>setPlantsl(data))
-    .catch((error)=>{
-      console.error('Error updating Item',error)
-    })
-  },[])
+function PlantList({displayPlants, onUpdatePlant}) {
+ 
+  
+
   return (
-    <ul className="cards">{plantsl.map((plant)=>(
-      <PlantCard key={plant.id} plants={plant}/>
+    <ul className="cards">{displayPlants.map((plant)=>(
+      <PlantCard key={plant.id} plant={plant} onUpdatePlant={onUpdatePlant}/>
     ))}</ul>
   );
 }
