@@ -10,7 +10,7 @@ function PlantCard({plant, onUpdatePlant}) {
       headers:{
         "Content-Type":"application/json",
       },
-      body:JSON.stringify({isInStock:!plant.isInStock}),
+      body:JSON.stringify({isInStock:!isInStock}),
     })
     .then((r)=>r.json())
     .then((updatedPlant)=>onUpdatePlant(updatedPlant))
@@ -21,8 +21,8 @@ function PlantCard({plant, onUpdatePlant}) {
     <li className="card" data-testid="plant-item">
       <img src={plant.image || "https://via.placeholder.com/400"} alt={plant.name} />
       <h4>{plant.name}</h4>
-      <p>Price: {plant.price}</p>
-        <button className="primary" onClick={handleInStock}>
+      <p>Price: ${plant.price}</p>
+        <button className={isInStock? "primary" :"outOfStock"} onClick={handleInStock}>
           {isInStock ? "In Stock" : "Out of Stock"}
         </button>
     </li>
