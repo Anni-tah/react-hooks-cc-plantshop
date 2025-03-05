@@ -18,6 +18,7 @@ function PlantPage() {
   },[]);
 
   //display plants depending on search
+
 function displayPlants(){
  return searchTerm ? 
   plants.filter((plant)=>
@@ -49,7 +50,7 @@ function handleUpdatePlant(updatedPlant){
   return (
     <main>
       <NewPlantForm onAddPlant={handleAddPlants}/>
-      <Search onSearch={setSearchTerm}/>
+      <Search onSearch={(value)=>setSearchTerm(value)}/>
       <PlantList displayPlants={displayPlants()} onUpdatePlant={handleUpdatePlant} />
     </main>
   );
